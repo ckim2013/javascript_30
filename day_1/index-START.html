@@ -58,7 +58,8 @@
   <audio data-key="76" src="sounds/tink.wav"></audio>
 
 <script>
-  window.addEventListener('keydown', e => {
+  window.addEventListener('keydown', playSound);
+  function playSound(e) {
     // querySelector selects the first element within the document that matches
     // the specified selector
     // The brackets is an attribute accessor
@@ -70,9 +71,16 @@
     key.classList.add('playing'); // jQuery: key.addClass('playing')
     // key.classList.remove('playing') -- Removes the class
     // key.classList.toggle('playing') -- Toggles class
-    // key.classList.remove('playing');
-    setTimeout(() => key.classList.remove('playing'), 400);
-  });
+    // setTimeout(() => key.classList.remove('playing'), 400); // Can be done with this too.
+  }
+
+  function removeTransition(e) {
+    if (e.propertyName !== 'transform') return; // skip it if its not a transform
+    this.classList.remove('playing');
+  }
+
+  const keys = document.querySelectorAll('.key');
+  keys.forEach(key => key.addEventListener('transitionend', removeTransition));
 </script>
 
 
