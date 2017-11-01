@@ -58,13 +58,18 @@
     }
 
   </style>
+  
   <script>
     const inputs = document.querySelectorAll('.controls input');
 
     function handleUpdate() {
       // dataset is a DOMStringMap object that has all the attributes of `this` that has the data- in front of the attribute
-      console.log(this.dataset);
+      // console.log(this.dataset);
       const suffix = this.dataset.sizing || '';
+      console.log(document.styleSheets);
+
+      // Seems like I can only put in `--...` as the first argument for setProperty
+      // Need to investigate more
       document.documentElement.style.setProperty(`--${this.name}`, this.value + suffix);
     }
 
