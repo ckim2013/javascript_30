@@ -6,12 +6,18 @@
 </head>
 <body>
 
+    <div class="master">
+      <div class='digital-container'>
+        <div id='digital-hour'>Hello</div>
+      </div>
 
-    <div class="clock">
-      <div class="clock-face">
-        <div class="hand hour hour-hand"></div>
-        <div class="hand min-hand"></div>
-        <div class="hand second-hand"></div>
+      <div class="clock">
+        <div class="clock-face">
+          <div class="hand hour hour-hand"></div>
+          <div class="hand min-hand"></div>
+          <div class="hand second-hand"></div>
+          <div class="center"></div>
+        </div>
       </div>
     </div>
 
@@ -29,8 +35,16 @@
       margin: 0;
       font-size: 2rem;
       display:flex;
+      justify-content: center;
       flex:1;
       min-height: 100vh;
+      align-items: center;
+    }
+
+    .master {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
       align-items: center;
     }
 
@@ -58,7 +72,7 @@
 
     .hand {
       width:50%;
-      height:6px;
+      height:3px;
       background:black;
       position: absolute;
       top:50%;
@@ -71,6 +85,17 @@
     .hour {
       width: 35%;
       left: 15%;
+    }
+
+    .center {
+      width: 10px;
+      height: 10px;
+      background: white;
+      left: 50%;
+      top: 50%;
+      position: relative;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
     }
 
   </style>
@@ -98,13 +123,17 @@
     }
 
     setInterval(setDate, 1000);
+    setInterval(setDigital, 1000);
 
+    const digitalHour = document.getElementById('digital-hour')
+    function setDigital() {
+      digitalHour.innerHTML = new Date();
+    }
     // Retrieved from developer.mozilla for setProperty
     // var declaration = document.styleSheets[0].rules[0].style;
     // declaration.setProperty('margin', '1px 2px');
     // Equivalent to:
     // declaration.margin = '1px 2px'; <- !!!!!!!!!
-
   </script>
 </body>
 </html>
