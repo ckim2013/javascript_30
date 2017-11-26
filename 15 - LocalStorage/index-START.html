@@ -74,13 +74,16 @@
         `
           <li>
             <input type="checkbox" data-index=${i} id="item${i}" ${plate.done ? "checked" : ""}/>
-            <label for="item${i}">${plate.text}</label>
+            <label onClick="consoleLog()" for="item${i}">${plate.text}</label>
           </li>
         `
       )
     }).join('');
   }
 
+  function consoleLog() {
+    console.log('hello world!');
+  }
   // Event delegation: Responsible parents and negligible children
   function toggleDone(e) {
     // You may see line 83 twice in the console log because you are clicking on both the label and the input. Our click on label is in turn checking the checkbox which triggers the click on the actual input.
