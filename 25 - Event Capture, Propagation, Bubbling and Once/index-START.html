@@ -39,7 +39,27 @@
 
 <button></button>
 <script>
+  // In modern browers, the browsers will capture your clicks (when you click on an element, it will ripple down). It then starts at the bottom, and then bubbles up, triggering event handlers.
+  const divs = document.querySelectorAll('div');
+  const button = document.querySelector('button');
 
+
+
+  function logText(e) {
+    e.stopPropagation(); // stop bubbling this all the way up
+    console.log(this.classList.value);
+  }
+  divs.forEach(div => div.addEventListener('click', logText, {
+    capture: false,
+    once: true
+  }));
+  // capture true means we will run the function down and not on the way up. Default is false
+  // once true will listen for a click once and then unbind itself. Same thing as:
+  // div.removeEventListener('click', logText)
+
+  button.addEventListener('click', () => {
+    console.log('Clickedd!!!!');
+  }, { once: true});
 </script>
 </body>
 </html>
