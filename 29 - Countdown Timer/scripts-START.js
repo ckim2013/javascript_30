@@ -54,4 +54,5 @@ document.customForm.addEventListener('submit', function(e) {
   // console.log(mins);
   timer(mins * 60);
   this.reset();
+  // reset clears the value;
 });
